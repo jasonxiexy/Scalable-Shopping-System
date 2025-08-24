@@ -1,26 +1,28 @@
 # High-availability-shopping-system
-A high availability shopping(e-commerce) system with high concurrency using SpringBoot, Spring Cloud(Microservices architecture), Spring Cloud Gateway, MySQL, resillience4j, Openfeign, Spring Security, RabbitMQ, Redis, Bloom Filter, Zipkin and Sleuth. The front end is implemented using Angular.
-# Main Functions shown on the website
+Build a scalable e-commerce platform using microservices architecture and Docker. The platform will handle various aspects of an online store, such as product catalog management, user authentication, shopping cart, payment processing, and order management. Each of these features will be implemented as separate microservices, allowing for independent development, deployment, and scaling.
 
-- **User Login**
-  - Three example users are provided.
-  - Orders could be viewed through `MY PROFILE`
-- **Deals and Products**
-  - Deals and products are shown on the pages.
-- **Purchase restriction**
-  - Each item can only be bought **once** per user.
-- **Order cancellation policy**
-  - Orders will be cancelled by the system in **5 minutes** if users do not pay.
-- **Error handler**
-  - User-friendly error pages. There are a few reasons for showing error pages.
-    - Deals/products not found.
-    - Limits the access rate from users so that the servers will not crash.
-    - When a service is down, protects the system.
-- **Admin Login**
-  - A simple admin page that allows the admin to add/start/end a deal.
-  - link: `/admin/login`
-  - default username: `admin`, password: `admin123`
-# Back-end Tech
+Such a high availability shopping(e-commerce) system with high concurrency using SpringBoot, Spring Cloud(Microservices architecture), Spring Cloud Gateway, MySQL, resillience4j, Openfeign, Spring Security, RabbitMQ, Redis, Bloom Filter, Zipkin and Sleuth. The front end potentially will be implemented using React.
+
+# Backend Services Guideline
+
+Here are the core microservices for this e-commerce platform:
+
+1. **User Service**: Handles user registration, authentication, and profile management.
+2. **Product Catalog Service**: Manages product listings, categories, and inventory.
+3. **Shopping Cart Service**: Manages users’ shopping carts, including adding/removing items and updating quantities.
+4. **Order Service**: Processes orders, including placing orders, tracking order status, and managing order history.
+5. **Payment Service**: Handles payment processing, integrating with external payment gateways (e.g., Stripe, PayPal).
+6. **Notification Service**: Sends email and SMS notifications for various events such as order confirmation, shipping updates, (e.g. Twilio, SendGrid).
+
+## Additional Components:
+
+7. **API Gateway**: Serves as the entry point for all client requests, routing them to the appropriate microservice. It might be worth looking into Kong, Traefik, or NGINX for this purpose.
+8. **Service Discovery**: Automatically detects and manages service instances. You can use Consul or Eureka for service discovery.
+9. **Centralized Logging**: Aggregates logs from all microservices for easy monitoring and debugging. You can use the ELK stack (Elasticsearch, Logstash, Kibana) for this purpose.
+10. **Docker & Docker Compose**: Containerize each microservice and manages their orchestration, networking, and scaling. Docker Compose can be used to define and manage multi-container applications.
+11. **CI/CD Pipeline**: Automates the build, test, and deployment process of each microservice. You can use Jenkins, GitLab CI, or GitHub Actions for this purpose.
+
+# Backend Tech Stack
 
 ## MySQL & Mybatis
 Mybatis is a framework supporting SQL for operating MySQL.
@@ -106,6 +108,24 @@ I also used the **Rate Limiter** to limit the access rate from the clients so th
 - Bad user experience
 - The failure of one service could cascade to other services throughout the whole application.
 
-# Front End - Angular
 
-Done.
+# Future Works on Frontend Features (React.js)
+
+- **User Login**
+  - Three example users are provided.
+  - Orders could be viewed through `MY PROFILE`
+- **Deals and Products**
+  - Deals and products are shown on the pages.
+- **Purchase restriction**
+  - Each item can only be bought **once** per user.
+- **Order cancellation policy**
+  - Orders will be cancelled by the system in **5 minutes** if users do not pay.
+- **Error handler**
+  - User-friendly error pages. There are a few reasons for showing error pages.
+    - Deals/products not found.
+    - Limits the access rate from users so that the servers will not crash.
+    - When a service is down, protects the system.
+- **Admin Login**
+  - A simple admin page that allows the admin to add/start/end a deal.
+  - link: `/admin/login`
+  - default username: `admin`, password: `admin123`
